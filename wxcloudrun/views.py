@@ -97,7 +97,7 @@ def wx_check():
 @app.route('/api/wx/test', methods=['GET', 'POST'])
 def wx_test():
     body = request.get_json()
-    logger.info("body: {}", body)
+    logger.info("body: %s", body)
     return ""
 
 
@@ -105,7 +105,7 @@ def wx_test():
 def handler_msg():
     body = request.get_data()
     req = xmltodict.parse(body)['xml']
-    logger.info("req: {}", req)
+    logger.info("req: %s", req)
 
     content = req['Content']
     to_user = req['ToUserName']
@@ -123,5 +123,5 @@ def handler_msg():
     msg = tpl.format(toUser=from_user, fromUser=to_user,
                      createTime=int(time.time()), content=content)
 
-    logger.info("rsp:{}", msg)
+    logger.info("rsp:%s", msg)
     return msg
