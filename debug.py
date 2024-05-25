@@ -10,5 +10,5 @@ body = {
 }
 
 
-rsp = rq.post('http://127.0.0.1/api/wx/msg', json=body)
+rsp = rq.post('http://127.0.0.1/api/wx', json=body)
 print(rsp.text)

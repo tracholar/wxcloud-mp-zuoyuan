@@ -70,7 +70,7 @@ def get_count():
     return make_succ_response(0) if counter is None else make_succ_response(counter.count)
 
 
-@app.route('/api/wx', methods=['GET', 'POST'])
+@app.route('/api/wx', methods=['GET'])
 def wx_check():
     import hashlib
     from config import wx_token
@@ -92,6 +92,17 @@ def wx_check():
         return echostr
     else:
         return ""
+
+
+@app.route('/api/wx', methods=['POST'])
+def wx_handler():
+    req = request.get_json()
+    logger.info("req: %s", req)
+
+    if 'action' in req and req['action'] == 'CheckContainerPath':
+        return ''
+    else:
+        return ''
 
 
 @app.route('/api/wx/test', methods=['GET', 'POST'])
