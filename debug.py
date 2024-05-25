@@ -3,8 +3,9 @@ import requests as rq
 import time
 
 body = {
-  "Content": "测试中文",
+  "Content": "为什么花儿这么红",
   "ToUserName": 'me',
+  'MsgType': 'text',
   "FromUserName": "you",
   "CreateTime": int(time.time())
 }

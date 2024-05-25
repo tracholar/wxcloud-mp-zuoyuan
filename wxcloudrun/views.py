@@ -112,13 +112,18 @@ def handler_msg(req):
     content = req['Content']
     to_user = req['ToUserName']
     from_user = req['FromUserName']
+    msg_type = req['MsgType']
 
+    if msg_type == 'text':
+        ret_content = chat(content)
+    else:
+        ret_content = u"不支持消息类型" + msg_type
     msg = {
         'ToUserName': from_user,
         'FromUserName': to_user,
         'CreateTime': int(time.time()),
         'MsgType': 'text',
-        'Content': chat(content)
+        'Content': ret_content
     }
 
     logger.debug("rsp: %s", msg)
