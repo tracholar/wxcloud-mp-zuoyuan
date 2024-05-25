@@ -10,6 +10,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 @app.route('/')
 def index():
     """
@@ -102,7 +103,7 @@ def wx_handler():
     if 'action' in req and req['action'] == 'CheckContainerPath':
         return ''
     else:
-        return ''
+        return handler_msg(req)
 
 
 @app.route('/api/wx/test', methods=['GET', 'POST'])
@@ -112,12 +113,7 @@ def wx_test():
     return ""
 
 
-@app.route('/api/wx/msg', methods=['GET', 'POST'])
-def handler_msg():
-    req = request.get_json()
-
-    logger.info("req: %s", req)
-
+def handler_msg(req):
     content = req['Content']
     to_user = req['ToUserName']
     from_user = req['FromUserName']
