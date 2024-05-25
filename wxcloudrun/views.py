@@ -103,25 +103,21 @@ def wx_test():
 
 @app.route('/api/wx/msg', methods=['GET', 'POST'])
 def handler_msg():
-    body = request.get_data()
-    req = xmltodict.parse(body)['xml']
+    req = request.get_json()
+
     logger.info("req: %s", req)
 
     content = req['Content']
     to_user = req['ToUserName']
     from_user = req['FromUserName']
 
-    tpl = '''
-    <xml>
-        <ToUserName><![CDATA[{toUser}]]></ToUserName>
-        <FromUserName><![CDATA[{fromUser}]]></FromUserName>
-        <CreateTime>{createTime}</CreateTime>
-        <MsgType><![CDATA[text]]></MsgType>
-        <Content><![CDATA[{content}]]></Content>
-    </xml>
-    '''
-    msg = tpl.format(toUser=from_user, fromUser=to_user,
-                     createTime=int(time.time()), content=content)
+    msg = {
+        'ToUserName': from_user,
+        'FromUserName': to_user,
+        'CreateTime': int(time.time()),
+        'MsgType': 'text',
+        'Content': content
+    }
 
     logger.info("rsp:%s", msg)
     return msg
