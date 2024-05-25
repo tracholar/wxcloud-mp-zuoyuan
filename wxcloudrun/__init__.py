@@ -10,6 +10,8 @@ pymysql.install_as_MySQLdb()
 app = Flask(__name__, instance_relative_config=True)
 app.config['DEBUG'] = config.DEBUG
 
+app.config['JSON_AS_ASCII'] = False
+
 # 设定数据库链接
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://{}:{}@{}/flask_demo'.format(config.username, config.password,
                                                                              config.db_address)
