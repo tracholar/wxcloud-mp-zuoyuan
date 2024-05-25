@@ -98,7 +98,7 @@ def wx_check():
 @app.route('/api/wx', methods=['POST'])
 def wx_handler():
     req = request.get_json()
-    logger.info("req: %s", req)
+    logger.debug("req: %s", req)
 
     if 'action' in req and req['action'] == 'CheckContainerPath':
         return ''
@@ -119,5 +119,5 @@ def handler_msg(req):
         'Content': content
     }
 
-    logger.info("rsp: %s", msg)
+    logger.debug("rsp: %s", msg)
     return jsonify(msg)

@@ -22,8 +22,6 @@ class Config(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     key = db.Column(db.String(256), unique=True)
     value = db.Column(db.TEXT)
-    created_at = db.Column('createdAt', db.TIMESTAMP, nullable=False, default=datetime.now())
-    updated_at = db.Column('updatedAt', db.TIMESTAMP, nullable=False, default=datetime.now())
 
 
 

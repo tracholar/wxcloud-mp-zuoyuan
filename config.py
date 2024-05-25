@@ -2,11 +2,13 @@ import os
 import logging
 
 # 是否开启debug模式
-DEBUG = True
+DEBUG = bool(os.environ.get('DEBUG', 'true'))
 if DEBUG:
     logging.basicConfig(level=logging.DEBUG)
 else:
     logging.basicConfig(level=logging.INFO)
+
+logging.info('DEBU: %s', DEBUG)
 
 # 读取数据库环境变量
 username = os.environ.get("MYSQL_USERNAME", 'root')
