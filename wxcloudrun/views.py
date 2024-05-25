@@ -88,7 +88,7 @@ def wx_check():
     sha1 = hashlib.sha1()
     map(sha1.update, list)
     hashcode = sha1.hexdigest()
-    print("handle/GET func: hashcode, signature: ", hashcode, signature)
+    logger.info("handle/GET func: hashcode: %s, signature: %s", hashcode, signature)
     if hashcode == signature:
         return echostr
     else:
@@ -104,13 +104,6 @@ def wx_handler():
         return ''
     else:
         return handler_msg(req)
-
-
-@app.route('/api/wx/test', methods=['GET', 'POST'])
-def wx_test():
-    body = request.get_json()
-    logger.info("body: %s", body)
-    return ""
 
 
 def handler_msg(req):
