@@ -3,7 +3,7 @@ import logging
 from sqlalchemy.exc import OperationalError
 
 from wxcloudrun import db
-from wxcloudrun.model import Counters
+from wxcloudrun.model import Counters, Config
 
 # 初始化日志
 logger = logging.getLogger('log')
@@ -62,3 +62,11 @@ def update_counterbyid(counter):
         db.session.commit()
     except OperationalError as e:
         logger.info("update_counterbyid errorMsg= {} ".format(e))
+
+
+def query_config(key):
+    try:
+        return Config.query.filter(Config.key == key).first()
+    except OperationalError as e:
+        logger.info("query_config errorMsg= {} ".format(e))
+        return None
