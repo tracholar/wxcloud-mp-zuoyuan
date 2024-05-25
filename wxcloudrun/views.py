@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import render_template, request
+from flask import render_template, request, jsonify
 from run import app
 from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid
 from wxcloudrun.model import Counters
@@ -120,4 +120,4 @@ def handler_msg(req):
     }
 
     logger.info("rsp: %s", msg)
-    return msg
+    return jsonify(msg)

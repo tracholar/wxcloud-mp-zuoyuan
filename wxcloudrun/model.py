@@ -16,6 +16,16 @@ class Counters(db.Model):
 
 
 
+class Config(db.Model):
+    __tablename__ = 'config'
+
+    id = db.Column(db.Integer, primary_key=True)
+    key = db.Column(db.String(256), unique=True)
+    value = db.Column(db.TEXT)
+    created_at = db.Column('createdAt', db.TIMESTAMP, nullable=False, default=datetime.now())
+    updated_at = db.Column('updatedAt', db.TIMESTAMP, nullable=False, default=datetime.now())
+
+
 
 with app.app_context():
     db.create_all()

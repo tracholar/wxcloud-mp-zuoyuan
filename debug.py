@@ -3,7 +3,7 @@ import requests as rq
 import time
 
 body = {
-  "Content": "ilovetracholar",
+  "Content": "测试中文",
   "ToUserName": 'me',
   "FromUserName": "you",
   "CreateTime": int(time.time())
