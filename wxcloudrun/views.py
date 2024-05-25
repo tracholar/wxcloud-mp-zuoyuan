@@ -119,5 +119,5 @@ def handler_msg():
         'Content': content
     }
 
-    logger.info("rsp:%s", msg)
+    logger.info("rsp: %s", msg)
     return msg
