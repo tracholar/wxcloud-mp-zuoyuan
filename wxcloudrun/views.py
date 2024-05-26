@@ -115,7 +115,7 @@ def handler_msg(req):
     msg_type = req['MsgType']
 
     if msg_type == 'text':
-        ret_content = chat(content)
+        ret_content = chat("请在100字以内回复我。" + content)
     else:
         ret_content = u"不支持消息类型" + msg_type
     msg = {
