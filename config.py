@@ -3,10 +3,11 @@ import logging
 
 # 是否开启debug模式
 DEBUG = bool(os.environ.get('DEBUG', 'true'))
+logfmt = '[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s'
 if DEBUG:
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.DEBUG, format=logfmt)
 else:
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.INFO, format=logfmt)
 
 logging.info('DEBU: %s', DEBUG)
 
