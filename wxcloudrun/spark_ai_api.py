@@ -38,7 +38,7 @@ def chat(msg):
     )
     messages = [ChatMessage(
         role="user",
-        content="请在150字以内回复我。" + msg
+        content="请在100字以内回复我。" + msg
     )]
     handler = MyHandler()
     a = spark.generate([messages], callbacks=[handler])
