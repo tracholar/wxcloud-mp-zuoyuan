@@ -5,7 +5,8 @@ import time
 body = {
   "Content": "小兔子的笑话",
   "ToUserName": 'me',
-  'MsgType': 'text',
+  'MsgType': 'event',
+  'Event': 'subscribe',
   "FromUserName": "you",
   "CreateTime": int(time.time())
 }

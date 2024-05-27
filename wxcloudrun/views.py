@@ -109,13 +109,20 @@ def wx_handler():
 
 
 def handler_msg(req):
-    content = req['Content']
     to_user = req['ToUserName']
     from_user = req['FromUserName']
     msg_type = req['MsgType'] if 'MsgType' in req else 'text'
+    ret_content = ''
 
     if msg_type == 'text':
+        content = req['Content']
         ret_content = chat("请在100字以内回复我。" + content)
+    elif msg_type == 'event':
+        event = req['Event']
+        if event == 'subscribe':
+            ret_content = u'欢迎订阅！已经接入大模型，可以输入任意文字进行对话！'
+        else:
+            ret_content = u'不支持的事件' + event
     else:
         ret_content = u"不支持消息类型" + msg_type
     msg = {
