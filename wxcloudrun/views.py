@@ -112,7 +112,7 @@ def handler_msg(req):
     content = req['Content']
     to_user = req['ToUserName']
     from_user = req['FromUserName']
-    msg_type = req['MsgType']
+    msg_type = req['MsgType'] if 'MsgType' in req else 'text'
 
     if msg_type == 'text':
         ret_content = chat("请在100字以内回复我。" + content)

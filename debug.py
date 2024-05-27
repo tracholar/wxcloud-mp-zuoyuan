@@ -3,7 +3,7 @@ import requests as rq
 import time
 
 body = {
-  "Content": "为什么花儿这么红",
+  "Content": "小兔子的笑话",
   "ToUserName": 'me',
   'MsgType': 'text',
   "FromUserName": "you",
