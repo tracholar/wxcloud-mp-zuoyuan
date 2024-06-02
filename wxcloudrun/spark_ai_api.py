@@ -3,9 +3,12 @@ from sparkai.core.messages import ChatMessage
 from typing import Optional, Union, Any
 import os
 import json
-from wxcloudrun.dao import query_config
 
-spark_ai_conf = json.loads(query_config('SPARKAI_CONF').value)
+spark_ai_conf = {
+    'SPARKAI_APP_ID': os.getenv('SPARKAI_APP_ID'),
+    'SPARKAI_API_SECRET': os.getenv('SPARKAI_API_SECRET'),
+    'SPARKAI_API_KEY': os.getenv('SPARKAI_API_KEY')
+}
 
 SPARKAI_URL = 'wss://spark-api.xf-yun.com/v1.1/chat'
 SPARKAI_APP_ID = spark_ai_conf['SPARKAI_APP_ID']

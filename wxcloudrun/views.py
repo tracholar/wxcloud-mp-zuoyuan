@@ -9,6 +9,7 @@ from wxcloudrun.spark_ai_api import chat
 import time
 import xmltodict
 import logging
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -108,6 +109,18 @@ def wx_handler():
         return handler_msg(req)
 
 
+def handler_weather(req):
+    content = req['Content']
+    logger.info('get weather for %s', content)
+
+    return u'晴'
+
+
+handler_map = {
+    u'^(.+)天气$': handler_weather
+}
+
+
 def handler_msg(req):
     to_user = req['ToUserName']
     from_user = req['FromUserName']
@@ -116,7 +129,16 @@ def handler_msg(req):
 
     if msg_type == 'text':
         content = req['Content']
-        ret_content = chat("请在100字以内回复我。" + content)
+
+        matched = False
+        for pat, handler in handler_map.items():
+            if re.match(pat, content):
+                ret_content = handler(req)
+                matched = True
+                break
+
+        if not matched:
+            ret_content = chat("请在100字以内回复我。" + content)
     elif msg_type == 'event':
         event = req['Event']
         if event == 'subscribe':
